@@ -1,17 +1,23 @@
 import '../css/style.css';
 
 import { getWeatherData } from './api.js';
+import { renderWeatherData, 
+         renderErrorMessage, 
+         clearErrorMessage, 
+         clearFormInput, 
+         updateWeatherIcon, 
+         showLoadingState, 
+         hideLoadingState } from './dom.js';
 
-async function testApiCall() {
-  try {
-    console.log("Fetching weather data for Dasmariñas...");
-    const weather = await getWeatherData('Dasmariñas');
-    
-    console.log("Success! Here is your clean weather object:");
-    console.log(weather);
-  } catch (error) {
-    console.error("Something went wrong with the fetch:", error);
-  }
-}
+const weatherForm = document.querySelector('.weather-form');
+const cityInput = document.querySelector('.city-input');
 
-testApiCall();
+weatherForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const cityName = cityInput.value;
+  clearErrorMessage();
+  let weatherData = await getWeatherData(cityName);
+  renderWeatherData(weatherData);
+  clearFormInput();
+});
