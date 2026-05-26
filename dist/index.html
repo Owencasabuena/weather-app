@@ -6,6 +6,40 @@
     <title>Weather App</title>
 </head>
 <body>
+    <main class="app-container">
+        
+        <form class="weather-form">
+            <input 
+                type="text" 
+                class="city-input" 
+                placeholder="Enter city name..." 
+                required
+            >
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="error-message"></div>
+
+        <div class="loading-spinner hidden">Loading weather data...</div>
+
+        <section class="weather-display">
+            <h2 class="city-name">--</h2>
+            
+            <div class="weather-info">
+                <div class="temp-container">
+                    <span class="temp">--</span>°C
+                </div>
+
+                <div class="humidity-container">
+                    Humidity: <span class="humidity">--</span>%
+                </div>
+
+                <img src="" alt="Weather Icon" class="icon">
+            </div>
+        </section>
+
+    </main>
+
     <script defer src="main.js"></script>
 </body>
 </html>
