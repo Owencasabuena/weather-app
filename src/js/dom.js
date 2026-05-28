@@ -5,11 +5,12 @@ export function renderWeatherData(weatherData) {
 
     temp.textContent = weatherData.temp
     humidity.textContent = weatherData.humidity;
-    // icon.src = o be continued i dont have svg yet
+    icon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 }
 
 export function updateWeatherIcon(iconCode) {
-
+    let icon = document.querySelector('.icon');
+    icon.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 }
 
 export function showLoadingState() {
