@@ -29,3 +29,16 @@ export async function getWeatherData(cityName) {
 
     return cleanData;
 }
+
+export async function fetchCitySuggestion(query) {
+    try {
+        let response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${API_KEY}`); 
+        let data = await response.json();
+        
+        const dataArray = Array.isArray(data) ? data : [data];
+        return dataArray;
+    } catch (error) {
+        console.error("Failed to fetch suggestions:", error);
+        return [];
+    }
+}
