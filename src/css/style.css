@@ -1,0 +1,199 @@
+/* ==========================================================================
+   1. RESET & CORE STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Soft, modern gradient background */
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    padding: 20px;
+    color: #ffffff;
+}
+
+/* Global utility flag to handle your async states */
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   2. APP CONTAINER & CARD STRUCTURE
+   ========================================================================== */
+.app-container {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   3. SEARCH FORM & DROPDOWN LAYOUT
+   ========================================================================== */
+.weather-form {
+    position: relative; /* Crucial context for absolute dropdown placement */
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.city-input {
+    flex: 1;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.city-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.city-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+.weather-form button {
+    padding: 14px 22px;
+    background: #ffffff;
+    border: none;
+    border-radius: 14px;
+    color: #1a2a3a;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.weather-form button:hover {
+    background: #f0f0f0;
+}
+
+.weather-form button:active {
+    transform: scale(0.97);
+}
+
+/* Floating Autocomplete Panel */
+.suggestions-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 14px;
+    list-style: none;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+    padding: 6px 0;
+}
+
+.suggestion-item {
+    padding: 12px 18px;
+    color: #1a1a1a;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.suggestion-item:hover {
+    background-color: #f3f4f6;
+}
+
+/* ==========================================================================
+   4. SYSTEM APP MESSAGES & FEEDBACK
+   ========================================================================== */
+.error-message {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.loading-spinner {
+    text-align: center;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 20px 0;
+    letter-spacing: 0.5px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   5. WEATHER PRESENTATION PANEL
+   ========================================================================== */
+.weather-display {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.city-name {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    color: #ffffff;
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.temp-container {
+    font-size: 4.5rem;
+    font-weight: 200; /* Lightweight modern typography style */
+    line-height: 1;
+    margin-bottom: 10px;
+    letter-spacing: -2px;
+}
+
+.temp-container span {
+    font-weight: 600;
+}
+
+.icon {
+    width: 96px;
+    height: 96px;
+    filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+    order: -1; /* Conceptually re-orders the image to sit above the numbers smoothly */
+    margin-bottom: -5px;
+}
+
+.humidity-container {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================================
+   6. ANIMATION TIMINGS
+   ========================================================================== */
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
