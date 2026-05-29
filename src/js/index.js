@@ -38,7 +38,16 @@ weatherForm.addEventListener('submit', async (e) => {
 
   const cityName = cityInput.value;
   clearErrorMessage();
-  let weatherData = await getWeatherData(cityName);
-  renderWeatherData(weatherData);
+  showLoadingState();
+
+  try {
+    let weatherData = await getWeatherData(cityName);
+    renderWeatherData(weatherData);  
+  } catch (error) {
+    renderErrorMessage('Something went wrong fetching data');
+  } finally {
+    hideLoadingState();
+  }
+  
   clearFormInput();
 });

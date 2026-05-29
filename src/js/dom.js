@@ -16,10 +16,14 @@ export function updateWeatherIcon(iconCode) {
 }
 
 export function showLoadingState() {
-
+    const spinner = document.querySelector('.loading-spinner');
+    spinner.classList.remove('hidden');
 }
 
-export function hideLoadingState() {}
+export function hideLoadingState() {
+    const spinner = document.querySelector('.loading-spinner');
+    spinner.classList.add('hidden');
+}
 
 export function renderErrorMessage(message) {
     let errorMessage = document.querySelector('.error-message');
